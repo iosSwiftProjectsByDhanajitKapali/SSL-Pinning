@@ -11,7 +11,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        guard let url = URL(string: "https://www.google.co.uk") else{return}
+        
+        ServiceManager().callAPI(withURL: url, isCertificatePinning: true) { (resultMessage) in
+            
+            //Present an alert on completing the API-call
+            let alert = UIAlertController(title: "SSL Pinning", message: resultMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
 

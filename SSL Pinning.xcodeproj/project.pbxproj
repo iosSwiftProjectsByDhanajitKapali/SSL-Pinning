@@ -13,6 +13,8 @@
 		0148267F26A1761900A76C1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0148267D26A1761900A76C1C /* Main.storyboard */; };
 		0148268126A1761F00A76C1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0148268026A1761F00A76C1C /* Assets.xcassets */; };
 		0148268426A1761F00A76C1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0148268226A1761F00A76C1C /* LaunchScreen.storyboard */; };
+		0148269026A1794500A76C1C /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148268F26A1794500A76C1C /* ServiceManager.swift */; };
+		0148269626A192A600A76C1C /* google.cer in Resources */ = {isa = PBXBuildFile; fileRef = 0148268C26A1764500A76C1C /* google.cer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0148268026A1761F00A76C1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0148268326A1761F00A76C1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0148268526A1761F00A76C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0148268C26A1764500A76C1C /* google.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = google.cer; sourceTree = "<group>"; };
+		0148268F26A1794500A76C1C /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		0148267626A1761900A76C1C /* SSL Pinning */ = {
 			isa = PBXGroup;
 			children = (
+				0148268C26A1764500A76C1C /* google.cer */,
 				0148267726A1761900A76C1C /* AppDelegate.swift */,
 				0148267926A1761900A76C1C /* SceneDelegate.swift */,
 				0148267B26A1761900A76C1C /* ViewController.swift */,
@@ -63,6 +68,7 @@
 				0148268026A1761F00A76C1C /* Assets.xcassets */,
 				0148268226A1761F00A76C1C /* LaunchScreen.storyboard */,
 				0148268526A1761F00A76C1C /* Info.plist */,
+				0148268F26A1794500A76C1C /* ServiceManager.swift */,
 			);
 			path = "SSL Pinning";
 			sourceTree = "<group>";
@@ -124,6 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0148269626A192A600A76C1C /* google.cer in Resources */,
 				0148268426A1761F00A76C1C /* LaunchScreen.storyboard in Resources */,
 				0148268126A1761F00A76C1C /* Assets.xcassets in Resources */,
 				0148267F26A1761900A76C1C /* Main.storyboard in Resources */,
@@ -140,6 +147,7 @@
 				0148267C26A1761900A76C1C /* ViewController.swift in Sources */,
 				0148267826A1761900A76C1C /* AppDelegate.swift in Sources */,
 				0148267A26A1761900A76C1C /* SceneDelegate.swift in Sources */,
+				0148269026A1794500A76C1C /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
