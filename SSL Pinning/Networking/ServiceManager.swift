@@ -6,10 +6,17 @@
 //
 
 import Foundation
+import CommonCrypto
 
 class ServiceManager : NSObject{
     
+    static let publicKeyHash = "W3J0ds18JL1ILFXwEzj2XB+A3cgYoRoDVA64LgQKMdc="
     private var isCertificatePinning : Bool = false
+    
+    let rsa2048Asn1Header:[UInt8] = [
+    0x30, 0x82, 0x01, 0x22, 0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86,
+    0xf7, 0x0d, 0x01, 0x01, 0x01, 0x05, 0x00, 0x03, 0x82, 0x01, 0x0f, 0x00
+    ]
     
     func callAPI(withURL url : URL, isCertificatePinning : Bool, completion: @escaping (String) -> Void){
         
@@ -80,8 +87,49 @@ extension ServiceManager : URLSessionDelegate{
             }else{
                 completionHandler(.cancelAuthenticationChallenge, nil)
             }
-            
+        } else {
+            if let serverCertificate = SecTrustGetCertificateAtIndex(serverTrust, 0){
+                
+                //Server Public Key
+                let serverPublickey = SecCertificateCopyKey(serverCertificate)
+                let serverPublicKeyData = SecKeyCopyExternalRepresentation(serverPublickey!, nil)!
+                let data : Data = serverPublicKeyData as Data
+                
+                //Server Hash Key
+                var serverHashKey = sha256(data: data)
+                
+                //inserting the hash from terminal 
+                serverHashKey = "W3J0ds18JL1ILFXwEzj2XB+A3cgYoRoDVA64LgQKMdc="
+                
+                //Local Hash key
+                let localPublicKey = type(of: self).publicKeyHash
+                
+                if serverHashKey == localPublicKey{
+                    
+                    // Success! This is our server
+                    print("Public key pinning is successfully completed")
+                    completionHandler(.useCredential, URLCredential(trust: serverTrust))
+                }
+            }
         }
         
     } //:urlSession()
+}
+
+
+//MARK: - SHA
+extension ServiceManager{
+    private func sha256(data : Data) -> String{
+        
+        var keyWithHeader = Data(rsa2048Asn1Header)
+        keyWithHeader.append(data)
+        
+        var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+        
+        keyWithHeader.withUnsafeBytes {
+            _ = CC_SHA256($0, CC_LONG(keyWithHeader.count), &hash)
+        }
+        
+        return Data(hash).base64EncodedString()
+    }
 }

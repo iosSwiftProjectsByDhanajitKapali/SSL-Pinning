@@ -14,8 +14,9 @@ class ViewController: UIViewController {
         
         guard let url = URL(string: "https://www.google.co.uk") else{return}
         
-        sslCertificatePinning(with: url)
+        //sslCertificatePinning(with: url)
         
+        sslPublicKeyHashPinning(with : url)
         
     }
     
@@ -30,6 +31,16 @@ class ViewController: UIViewController {
         }
     }
 
+    ///Function to test SPKI Pinning( Subject Public key Pinning), Here we will Pin the hash of the Public key  of the certificate
+    func sslPublicKeyHashPinning(with url : URL){
+        ServiceManager().callAPI(withURL: url, isCertificatePinning: false) { (resultMessage) in
+            
+            //Present an alert on completing the API-call
+            let alert = UIAlertController(title: "SSL Pinning", message: resultMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 
 }
 
