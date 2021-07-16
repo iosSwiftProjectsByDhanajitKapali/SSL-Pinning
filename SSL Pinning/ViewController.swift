@@ -14,6 +14,13 @@ class ViewController: UIViewController {
         
         guard let url = URL(string: "https://www.google.co.uk") else{return}
         
+        sslCertificatePinning(with: url)
+        
+        
+    }
+    
+    ///Function to test SSL Certificate Pinning
+    func sslCertificatePinning(with url : URL){
         ServiceManager().callAPI(withURL: url, isCertificatePinning: true) { (resultMessage) in
             
             //Present an alert on completing the API-call
