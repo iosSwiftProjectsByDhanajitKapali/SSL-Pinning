@@ -7,6 +7,7 @@
 
 import Foundation
 import CommonCrypto
+import CryptoKit
 
 class ServiceManager : NSObject{
     
@@ -94,22 +95,32 @@ extension ServiceManager : URLSessionDelegate{
                 let serverPublickey = SecCertificateCopyKey(serverCertificate)
                 let serverPublicKeyData = SecKeyCopyExternalRepresentation(serverPublickey!, nil)!
                 let data : Data = serverPublicKeyData as Data
+                print(data as NSData)
                 
-                //Server Hash Key
-                var serverHashKey = sha256(data: data)
+                //Create Server Hash Key
                 
-                //inserting the hash from terminal 
-                serverHashKey = "W3J0ds18JL1ILFXwEzj2XB+A3cgYoRoDVA64LgQKMdc="
+                //Using CommonCrypto
+                //var serverHashKey = sha256(data)
+                
+                //Using Cryptokit
+//                let hashed = SHA256.hash(data: data)
+//                let temp = String(describing: hashed)
+//                let serverHashKey = hashed.compactMap { String(format: "%02x", $0) }.joined()
+//                let stringHash = hashed.map { String(format: "%02hhx", $0) }.joined()
+                
+                //inserting the hash from terminal
+                //serverHashKey = "W3J0ds18JL1ILFXwEzj2XB+A3cgYoRoDVA64LgQKMdc="
                 
                 //Local Hash key
                 let localPublicKey = type(of: self).publicKeyHash
                 
-                if serverHashKey == localPublicKey{
-                    
-                    // Success! This is our server
-                    print("Public key pinning is successfully completed")
-                    completionHandler(.useCredential, URLCredential(trust: serverTrust))
-                }
+                //Comparing the hash of local and server public key
+//                if serverHashKey == localPublicKey{
+//
+//                    // Success! This is our server
+//                    print("Public key pinning is successfully completed")
+//                    completionHandler(.useCredential, URLCredential(trust: serverTrust))
+//                }
             }
         }
         
@@ -119,17 +130,38 @@ extension ServiceManager : URLSessionDelegate{
 
 //MARK: - SHA
 extension ServiceManager{
-    private func sha256(data : Data) -> String{
-        
-        var keyWithHeader = Data(rsa2048Asn1Header)
-        keyWithHeader.append(data)
-        
-        var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
-        
-        keyWithHeader.withUnsafeBytes {
-            _ = CC_SHA256($0, CC_LONG(keyWithHeader.count), &hash)
-        }
-        
-        return Data(hash).base64EncodedString()
-    }
+//    private func sha256(_ data : Data) -> String{
+//
+//        var keyWithHeader = Data(rsa2048Asn1Header)
+//        keyWithHeader.append(data)
+//
+//        var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+//
+//        keyWithHeader.withUnsafeBytes {
+//            _ = CC_SHA256($0, CC_LONG(keyWithHeader.count), &hash)
+//        }
+//
+//        return Data(hash).base64EncodedString()
+//    }
+    
+//
+//    func sha256(_ data: Data) -> String {
+//      //let data = stringValue.data(using: String.Encoding.utf8)!
+//      var digest = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+//      CC_SHA256((data as NSData).bytes, CC_LONG(data.count), &digest)
+//      let hexBytes = digest.map { String(format: "%02hhx", $0) }
+//      return hexBytes.joined(separator: "")
+//    }
+    
+//    func sha256(_ data: Data) -> String {
+//      let digest = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH))!
+//      let value = data as NSData
+//      let uint8Pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: digest.length)
+//      CC_SHA256(value.bytes, CC_LONG(data.count), uint8Pointer)
+//      let hashData = value as Data
+//        let hashString = hashData.base64EncodedString()
+//      return hashString
+//    }
+    
+   
 }
