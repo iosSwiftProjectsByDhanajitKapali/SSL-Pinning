@@ -15,6 +15,9 @@
 		0148268426A1761F00A76C1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0148268226A1761F00A76C1C /* LaunchScreen.storyboard */; };
 		0148269026A1794500A76C1C /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148268F26A1794500A76C1C /* ServiceManager.swift */; };
 		0148269626A192A600A76C1C /* google.cer in Resources */ = {isa = PBXBuildFile; fileRef = 0148268C26A1764500A76C1C /* google.cer */; };
+		E7C36EEF2B9C8980004E5B4E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C36EEE2B9C8980004E5B4E /* NetworkManager.swift */; };
+		E7C36EF12B9C8C33004E5B4E /* run.mocky.io.cer in Resources */ = {isa = PBXBuildFile; fileRef = E7C36EF02B9C8C33004E5B4E /* run.mocky.io.cer */; };
+		E7C36EF32B9C8DFE004E5B4E /* TestPinning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C36EF22B9C8DFE004E5B4E /* TestPinning.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		0148268526A1761F00A76C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0148268C26A1764500A76C1C /* google.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = google.cer; sourceTree = "<group>"; };
 		0148268F26A1794500A76C1C /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		E7C36EEE2B9C8980004E5B4E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E7C36EF02B9C8C33004E5B4E /* run.mocky.io.cer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = run.mocky.io.cer; sourceTree = "<group>"; };
+		E7C36EF22B9C8DFE004E5B4E /* TestPinning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPinning.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				0148268526A1761F00A76C1C /* Info.plist */,
+				E7C36EF02B9C8C33004E5B4E /* run.mocky.io.cer */,
 				0148268C26A1764500A76C1C /* google.cer */,
 				0148269F26A19D0600A76C1C /* Lifecycle */,
 				0148269E26A19CFB00A76C1C /* Networking */,
@@ -84,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				0148268F26A1794500A76C1C /* ServiceManager.swift */,
+				E7C36EEE2B9C8980004E5B4E /* NetworkManager.swift */,
+				E7C36EF22B9C8DFE004E5B4E /* TestPinning.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -171,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0148269626A192A600A76C1C /* google.cer in Resources */,
+				E7C36EF12B9C8C33004E5B4E /* run.mocky.io.cer in Resources */,
 				0148268426A1761F00A76C1C /* LaunchScreen.storyboard in Resources */,
 				0148268126A1761F00A76C1C /* Assets.xcassets in Resources */,
 				0148267F26A1761900A76C1C /* Main.storyboard in Resources */,
@@ -185,7 +195,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0148267C26A1761900A76C1C /* ViewController.swift in Sources */,
+				E7C36EF32B9C8DFE004E5B4E /* TestPinning.swift in Sources */,
 				0148267826A1761900A76C1C /* AppDelegate.swift in Sources */,
+				E7C36EEF2B9C8980004E5B4E /* NetworkManager.swift in Sources */,
 				0148267A26A1761900A76C1C /* SceneDelegate.swift in Sources */,
 				0148269026A1794500A76C1C /* ServiceManager.swift in Sources */,
 			);

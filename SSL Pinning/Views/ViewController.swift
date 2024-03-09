@@ -16,8 +16,38 @@ class ViewController: UIViewController {
         
         //sslCertificatePinning(with: url)
         
-        sslPublicKeyHashPinning(with : url)
+        //sslPublicKeyHashPinning(with : url)
         
+        testSSLCertificatePinning()
+        
+        //testMethod()
+        
+    }
+    
+    func testMethod() {
+        let url = URL(string: "https://run.mocky.io/v3/b2e88f01-44a6-4549-b34e-0f6d115502bc")!
+        let configuration = URLSessionConfiguration.default
+        let delegate = CertificatePinningDelegate()
+        let session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+
+        let task = session.dataTask(with: url) { (data, response, error) in
+            // Handle response
+            print("lol")
+        }
+
+        task.resume()
+    }
+    
+    func testSSLCertificatePinning() {
+        guard let url = URL(string: "https://run.mocky.io/v3/b2e88f01-44a6-4549-b34e-0f6d115502bc") else{ return }
+        NetworkManager().dataRequest(url) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
     
     ///Function to test SSL Certificate Pinning
